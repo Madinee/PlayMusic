@@ -1,0 +1,14 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-searchbar type="text" placeholder="Artiste" (keyup.enter)="onSearchArtist($event)"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card *ngFor="let artist of listArtist" (click)="onClick([artist.name])" routerDirection="forward">
+    <img src={{artist.picture_medium}} />
+    <ion-card-header>
+      <ion-card-subtitle>{{artist.name }}</ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
+</ion-content>

@@ -27,9 +27,7 @@ export class HomePage {
 }
 
 onClick(artist:string){
-  this.router.navigate([`listalbum/${artist}`]);
-  // this.router.navigate(['listalbum/${artist}', { artist: artist }]);
-  
+  this.router.navigate([`listalbum/${artist}`]);  
 }
 
 }

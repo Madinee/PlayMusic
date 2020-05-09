@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-card *ngFor="let album of listAlbum">
+  <ion-card *ngFor="let album of listAlbum" (click)="onClick([album.id])" routerDirection="forward">
     <img src={{album.cover_medium}} />
     <ion-card-header>
       <ion-card-subtitle>{{album.title }}</ion-card-subtitle>

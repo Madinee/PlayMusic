@@ -3,6 +3,8 @@ import {DataSearchArtist} from '../Model/datasearchartist';
 import { HttpClient } from '@angular/common/http';
 import { HomePage } from '../home/home.page';
 import { DataSearchAlbum } from '../Model/datasearchalbum';
+import {DataSearchTracks} from '../Model/datasearchtrack';
+import { from } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -41,4 +43,20 @@ export class DeezerService {
       });
       });
       }
+
+
+      getTracks(tracks:number):Promise<DataSearchTracks> {
+        console.log(`${this.TAG} getTracks ${tracks}`);
+        const url: string = 'https://api.deezer.com/album/' + encodeURI(String(tracks));
+        console.log(`${this.TAG} url: ${url}`);
+        return new Promise(resolve => {
+        this.http.get(url).subscribe(data => {
+        let json: DataSearchTracks = data as DataSearchTracks;
+        resolve(json);
+        }, err => {
+        console.log(err);
+        });
+        });
+        }
+
 }

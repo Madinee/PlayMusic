@@ -8,11 +8,32 @@
 </ion-header>
 
 
-  <ion-content>
-      <ion-list>
-          <ion-item *ngFor="let track of listTrack" >
-              {{track.title}}
+  <ion-content [fullscreen]="true">
+      <ion-list *ngFor="let track of listTrack">
+          <ion-item >{{track.title}}
+            <ion-button fill="clear" (click)="backPreview([track.preview])">
+              <ion-icon name="play-skip-back-circle-outline"></ion-icon>
+            </ion-button>
+              <ion-button fill="clear" (click)="playPreview([track.preview])">
+                <ion-icon slot="icon-only" name="play-circle-outline"></ion-icon>
+              </ion-button>
+              <ion-button fill="clear" (click)="forwardPreview([track.preview])">
+                <ion-icon name="play-skip-forward-circle-outline"></ion-icon>
+              </ion-button>
           </ion-item>
       </ion-list>
   </ion-content>
+  <!-- <ion-content [fullscreen]="true">
+    <ion-list>
+      <ion-item-sliding>
+      <ion-item>
+         My first item in this list
+      </ion-item>
+    </ion-item-sliding>
+      <ion-item>
+        My second item in this list
+      </ion-item>
+    </ion-list>
+    
+  </ion-content> -->
 

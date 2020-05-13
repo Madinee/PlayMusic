@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Tracks } from '../Model/datasearchtrack';
+import { Track } from '../Model/datasearchtrack';
 import {DeezerService} from '../service/deezer.service';
 import { from } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
@@ -13,21 +13,31 @@ import { Router, NavigationExtras } from '@angular/router';
 })
 export class ListTrackPage implements OnInit {
 
-  listTrack: Array<Tracks> = [];
+  listTrack: Array<Track> = [];
   id: number;
+  nb:string;
+  audio: HTMLAudioElement;
   constructor(private deezerService: DeezerService, private routeActivate: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-    //this.id=this.routeActivate.snapshot.paramMap.get('id');
+    this.nb=this.routeActivate.snapshot.paramMap.get('id');
+    this.id=Number(this.nb);
     this.getTracks();
   }
 
   getTracks() {
     console.log('id : ' + this.id);
     this.deezerService.getTracks(this.id).then((value)=>{
-      this.listTrack=value.data;
+      this.listTrack=value.tracks.data;
+      console.log(value);
     }
     );
    console.log('track : ' + this.listTrack);
+  }
+
+  playPreview(preview:string){
+    this.audio=new Audio(preview);
+    this.audio.play(); 
+
   }
 }

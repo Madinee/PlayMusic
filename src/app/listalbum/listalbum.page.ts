@@ -31,6 +31,7 @@ ngOnInit() {
     console.log('artist2 : ' + this.artist);
     this.deezerService.getAlbum(this.artist).then((value)=>{
       this.listAlbum=value.data;
+      console.log(value.data);
     }
     );
    console.log('album : ' + this.listAlbum);
@@ -39,7 +40,5 @@ ngOnInit() {
 
   onClick(id:number){
     this.router.navigate([`list-track/${id}`]);
-    console.log('route : '+[`list-track/${id}`]);
-
 }
 }

@@ -25,3 +25,18 @@
 #container a {
   text-decoration: none;
 }
+
+ion-toolbar {
+  --background: #51A3EC;
+  
+  }
+  ion-button, ion-menu-button{
+    --color:black;
+  }
+  h4{
+    text-align: center;
+  }
+  // ion-content {
+  //   --background: url('/assets/img/image.jpg') no-repeat ;
+  // }
+  

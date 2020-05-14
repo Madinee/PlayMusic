@@ -1,10 +1,21 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-searchbar type="text" placeholder="Artiste" (keyup.enter)="onSearchArtist($event)"></ion-searchbar>
+    <ion-buttons slot="primary">
+      <ion-button (click)="clickedStar()">
+        <ion-icon name="heart-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>PallaMusic</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <h4>Looking for an artist?</h4>
+  <ion-searchbar type="text" placeholder="Enter your artist name" (keyup.enter)="onSearchArtist($event)"></ion-searchbar>
+
   <ion-card *ngFor="let artist of listArtist" (click)="onClick([artist.name])" routerDirection="forward">
     <img src={{artist.picture_medium}} />
     <ion-card-header>

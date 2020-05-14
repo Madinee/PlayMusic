@@ -1,3 +1,11 @@
 .end {
     position:absolute; right:0; bottom:0;
 }
+ion-toolbar {
+    --background: #51A3EC;
+    
+    }
+    ion-back-button, ion-menu-button{
+      --color:black;
+    }
+    

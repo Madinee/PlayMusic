@@ -14,9 +14,14 @@ import { Router, NavigationExtras } from '@angular/router';
 export class ListTrackPage implements OnInit {
 
   listTrack: Array<Track> = [];
+  playing: boolean = false;
+  preview:string;
+  
   id: number;
   nb:string;
   audio: HTMLAudioElement;
+  tempAudio: HTMLAudioElement;
+
   constructor(private deezerService: DeezerService, private routeActivate: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
@@ -29,15 +34,42 @@ export class ListTrackPage implements OnInit {
     console.log('id : ' + this.id);
     this.deezerService.getTracks(this.id).then((value)=>{
       this.listTrack=value.tracks.data;
-      console.log(value);
+      console.log(value.tracks.data);
     }
     );
    console.log('track : ' + this.listTrack);
   }
 
-  playPreview(preview:string){
-    this.audio=new Audio(preview);
-    this.audio.play(); 
+  playPreview(preview){
+    if(this.playing == false){
+      if(this.tempAudio == null){
+        this.audio=new Audio(preview);
+        this.audio.play(); 
+        this.playing = true;
+        this.tempAudio = this.audio;
+      }else{
+        this.playing = true;
+        this.audio=this.tempAudio
+        this.audio.play(); 
+      }
+      
+    }else{
+      this.tempAudio = this.audio;
+      this.audio.pause();
+      this.playing = false;
+    }
+   
+   
+    
+  
+  }
+  backPreview(preview){
+   
+  }
+
+  forwardPreview(preview){
 
   }
+  
+
 }
